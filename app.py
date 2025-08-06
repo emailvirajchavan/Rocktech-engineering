@@ -7,10 +7,10 @@ app = Flask(__name__)
 app.secret_key = 'your_secret_key'  
 
 # PostgreSQL DB configuration
-DB_HOST = "localhost"
-DB_NAME = "rocktech_inventory"
-DB_USER = "postgres"
-DB_PASS = "admin"
+DB_HOST = "dpg-d29gg0er433s739bfrk0-a"
+DB_NAME = "rocktech_db"
+DB_USER = "rocktech_db_user"
+DB_PASS = "Utmu6dWmd6PbnwoZ9KZlJIT5VIHadGGO"
 
 # Function to get DB connection
 def get_db_connection():
