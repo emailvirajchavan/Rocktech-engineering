@@ -11,6 +11,7 @@ DB_HOST = "dpg-d29gg0er433s739bfrk0-a"
 DB_NAME = "rocktech_db"
 DB_USER = "rocktech_db_user"
 DB_PASS = "Utmu6dWmd6PbnwoZ9KZlJIT5VIHadGGO"
+DB_PORT = "5432"
 
 # Function to get DB connection
 def get_db_connection():
@@ -19,6 +20,7 @@ def get_db_connection():
         database=DB_NAME,
         user=DB_USER,
         password=DB_PASS
+        port=DB_PORT
     )
 
 @app.route('/')
