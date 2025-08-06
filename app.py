@@ -2,25 +2,27 @@ from flask import Flask, render_template, request, redirect, url_for, session, f
 import psycopg2
 from psycopg2 import sql
 import os
+import urllib.parse as urlparse
 
 app = Flask(__name__)
 app.secret_key = 'your_secret_key'  
 
 # PostgreSQL DB configuration
-DB_HOST = "dpg-d29gg0er433s739bfrk0-a"
-DB_NAME = "rocktech_db"
-DB_USER = "rocktech_db_user"
-DB_PASS = "Utmu6dWmd6PbnwoZ9KZlJIT5VIHadGGO"
-DB_PORT = "5432"
 
-# Function to get DB connection
+
 def get_db_connection():
+    url = os.environ.get("DATABASE_URL")
+    if not url:
+        raise Exception("DATABASE_URL not set")
+
+    result = urlparse.urlparse(url)
+
     return psycopg2.connect(
-        host=os.environ.get("DB_HOST"),
-        database=os.environ.get("DB_NAME"),
-        user=os.environ.get("DB_USER"),
-        password=os.environ.get("DB_PASS"),
-        port=os.environ.get("DB_PORT")
+        database=result.path[1:],
+        user=result.username,
+        password=result.password,
+        host=result.hostname,
+        port=result.port
     )
 
 @app.route('/')
